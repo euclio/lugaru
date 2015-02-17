@@ -141,6 +141,7 @@ extern int numattacks;
 extern int maxalarmed;
 extern int numresponded;
 extern int numreversalED;//added by Bryan to count enemy reversals
+extern int targetlevel;//possibly challenge level?
 
 extern bool campaign;
 extern bool winfreeze;
@@ -1761,9 +1762,10 @@ int Game::DrawGLScene(void)
 			std::fstream log;
 			log.open("tests.csv", std::fstream::out | std::fstream::app);
 			if (log.tellg() == 0) {
-				log << "user,testFinish,timeAlive,numKicks,numRabbitKicks,numAttacks,numReversals,numReversaled,score" << std::endl;
+				log << "user,level,testFinish,timeAlive,numKicks,numRabbitKicks,numAttacks,numReversals,numReversaled,difficulty,score" << std::endl;
 			}
 				log << accountname[accountactive] << ","
+					<< targetlevel << ","
 					<< testEndTime << ","
 					<< leveltime << ","
 					<< numKicks << ","
@@ -1771,8 +1773,12 @@ int Game::DrawGLScene(void)
 					<< numattacks << ","
 					<< numreversals << ","
 					<< numreversalED << ","
+					<< difficulty << ","
 					<< static_cast<int>(bonustotal - startbonustotal) << std::endl;
 			log.close();
+			// if(difficulty==2)sprintf (menustring[3], "Difficulty: Insane");
+			// 	if(difficulty==1)sprintf (menustring[3], "Difficulty: Difficult");
+			// 	if(difficulty==0)sprintf (menustring[3], "Difficulty: Easier");
 			notlogged = false;
 		}
 
