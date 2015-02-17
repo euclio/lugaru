@@ -1750,6 +1750,7 @@ int Game::DrawGLScene(void)
 		if(notlogged && (winfreeze || player[0].dead)) {
 			std::cout << "You lasted for " << leveltime << " seconds " << std::endl;
 			std::cout << "You had " << numKicks << " successful kicks" << std::endl;
+			std::cout << "You attacked " << numattacks << " times" << std::endl;
 			notlogged = false;
 		}
 

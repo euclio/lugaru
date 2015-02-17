@@ -2522,9 +2522,7 @@ void	Person::DoAnimations(){
                         victim->DoDamage(damagemult*100/victim->protectionhead);
 
                         if (id == 0) {
-                            std::cout << this->id <<
-                                " KICK SUCCESSFUL on " << victim->id <<
-                                std::endl;
+                            numKicks++;
                         }
 
                         if(id==0){

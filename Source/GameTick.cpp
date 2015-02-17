@@ -7116,7 +7116,6 @@ void	Game::Tick()
 												}
 												if(animation[player[k].targetanimation].attack&&k==0){
 													numattacks++;
-													std::cout << numattacks << std::endl;
 													bool armedstaff=0;
 													if(player[k].weaponactive!=-1){
 														if(weapons.type[player[k].weaponids[player[k].weaponactive]]==staff)armedstaff=1;
