@@ -247,6 +247,7 @@ bool won = 0;
 bool campaign = 0;
 
 int numfalls = 0;
+int numKicks = 0;
 int numflipfail = 0;
 int numseen = 0;
 int numresponded = 0;

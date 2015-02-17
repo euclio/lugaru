@@ -22,6 +22,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "Game.h"
 #include "openal_wrapper.h"
 
+#include <iostream>
+
 using namespace std;
 
 extern XYZ viewer;
@@ -120,6 +122,7 @@ extern bool accountunlocked[10][60];
 extern char accountname[10][256];
 
 extern int numfalls;
+extern int numKicks;
 extern int numflipfail;
 extern int numseen;
 extern int numstaffattack;
@@ -1742,7 +1745,9 @@ int Game::DrawGLScene(void)
 			drawmode=normalmode;
 		}
 
+
 		if(winfreeze&&!campaign){
+			std::cout << "You had " << numKicks << " successful kicks" << std::endl;
 			glDisable(GL_DEPTH_TEST);							// Disables Depth Testing
 			glDisable(GL_CULL_FACE);
 			glDisable(GL_LIGHTING);

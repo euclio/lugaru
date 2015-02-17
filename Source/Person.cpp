@@ -92,6 +92,7 @@ extern float hostiletime;
 extern int mainmenu;
 
 extern int numfalls;
+extern int numKicks;
 extern int numflipfail;
 extern int numseen;
 extern int numswordattack;
@@ -2513,6 +2514,10 @@ void	Person::DoAnimations(){
 										//FootLand(1,2);
 										victim->Puff(head);
 										victim->DoDamage(damagemult*100/victim->protectionhead);
+										if (id == 0) {
+											std::cout << this->id << " KICK SUCCESSFUL on " << victim->id << std::endl;
+											numKicks++;
+										}
 
 										if(id==0){
 											SolidHitBonus();
