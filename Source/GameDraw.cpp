@@ -216,6 +216,8 @@ long long Game::MD5_string (char *string){
 
 int Game::DrawGLScene(void)
 {	
+    // We only want to log our final results once.
+    static bool notlogged = true;
 	static float texcoordwidth,texcoordheight;
 	static float texviewwidth, texviewheight;
 	static int i,j,k,l;
@@ -1745,9 +1747,13 @@ int Game::DrawGLScene(void)
 			drawmode=normalmode;
 		}
 
+		if(notlogged && (winfreeze || player[0].dead)) {
+			std::cout << "You lasted for " << leveltime << " seconds " << std::endl;
+			std::cout << "You had " << numKicks << " successful kicks" << std::endl;
+			notlogged = false;
+		}
 
 		if(winfreeze&&!campaign){
-			std::cout << "You had " << numKicks << " successful kicks" << std::endl;
 			glDisable(GL_DEPTH_TEST);							// Disables Depth Testing
 			glDisable(GL_CULL_FACE);
 			glDisable(GL_LIGHTING);
