@@ -1761,10 +1761,11 @@ int Game::DrawGLScene(void)
 			std::fstream log;
 			log.open("tests.csv", std::fstream::out | std::fstream::app);
 			if (log.tellg() == 0) {
-				log << "user,testFinish,timeAlive,numKicks,numRabbitKicks,numAttacks,numReversals,numReversaled,score" << std::endl;
+				log << "user,testFinish,outcome,timeAlive,numKicks,numRabbitKicks,numAttacks,numReversals,numReversaled,score" << std::endl;
 			}
 				log << accountname[accountactive] << ","
 					<< testEndTime << ","
+					<< (player[0].dead ? "lost" : "won") << ","
 					<< leveltime << ","
 					<< numKicks << ","
 					<< numrabbitKicks << ","
