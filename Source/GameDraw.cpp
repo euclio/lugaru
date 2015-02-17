@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "Game.h"
 #include "openal_wrapper.h"
 
+#include <ctime>
 #include <iostream>
 
 using namespace std;
@@ -1749,14 +1750,25 @@ int Game::DrawGLScene(void)
 			drawmode=normalmode;
 		}
 
+		// The game is over (either you lost, or you won).
+		// Log the data in CSV format.
 		if(notlogged && (winfreeze || player[0].dead)) {
-			std::cout << "You lasted for " << leveltime << " seconds " << std::endl;
-			std::cout << "You had " << numKicks << " successful kicks" << std::endl;
-			std::cout << "Additionally you had " << numrabbitKicks << " wabbit kicks" << std::endl;
-			std::cout << "You attacked " << numattacks << " times" << std::endl;
-			std::cout << "You succeeded in " << numreversals << " reversals" << std::endl;
-			std::cout << "You were reversaled " << numreversalED << " times" << std::endl;
-			std::cout << "Your score was " << static_cast<int>(bonustotal - startbonustotal) << std::endl;
+			time_t t = time(NULL);
+			struct tm *tm = localtime(&t);
+			char testEndTime[20];
+			strftime(testEndTime, sizeof(testEndTime), "%Y-%m-%d %T", tm);
+
+			std::ostream& out(std::cout);
+			out << "user,testFinish,timeAlive,numKicks,numRabbitKicks,numAttacks,numReversals,numReversaled,score" << std::endl
+				<< accountname[accountactive] << ","
+				<< testEndTime << ","
+				<< leveltime << ","
+				<< numKicks << ","
+				<< numrabbitKicks << ","
+				<< numattacks << ","
+				<< numreversals << ","
+				<< numreversalED << ","
+				<< static_cast<int>(bonustotal - startbonustotal) << std::endl;
 			notlogged = false;
 		}
 
