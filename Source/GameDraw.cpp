@@ -1756,6 +1756,7 @@ int Game::DrawGLScene(void)
 			std::cout << "You attacked " << numattacks << " times" << std::endl;
 			std::cout << "You succeeded in " << numreversals << " reversals" << std::endl;
 			std::cout << "You were reversaled " << numreversalED << " times" << std::endl;
+			std::cout << "Your score was " << static_cast<int>(bonustotal - startbonustotal) << std::endl;
 			notlogged = false;
 		}
 
