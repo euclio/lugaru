@@ -121,6 +121,7 @@ extern float accountfasttime[10][50];
 extern bool accountunlocked[10][60];
 extern char accountname[10][256];
 
+extern int numrabbitKicks;//added by bryan to count number of rabbit kicks
 extern int numfalls;
 extern int numKicks;
 extern int numflipfail;
@@ -138,6 +139,7 @@ extern int numreversals;
 extern int numattacks;
 extern int maxalarmed;
 extern int numresponded;
+extern int numreversalED;//added by Bryan to count enemy reversals
 
 extern bool campaign;
 extern bool winfreeze;
@@ -1750,7 +1752,10 @@ int Game::DrawGLScene(void)
 		if(notlogged && (winfreeze || player[0].dead)) {
 			std::cout << "You lasted for " << leveltime << " seconds " << std::endl;
 			std::cout << "You had " << numKicks << " successful kicks" << std::endl;
+			std::cout << "Additionally you had " << numrabbitKicks << " wabbit kicks" << std::endl;
 			std::cout << "You attacked " << numattacks << " times" << std::endl;
+			std::cout << "You succeeded in " << numreversals << " reversals" << std::endl;
+			std::cout << "You were reversaled " << numreversalED << " times" << std::endl;
 			notlogged = false;
 		}
 

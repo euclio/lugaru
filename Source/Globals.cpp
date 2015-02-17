@@ -246,6 +246,9 @@ bool won = 0;
 
 bool campaign = 0;
 
+int numreversalED = 0;//added by Bryan to count enemy reversals
+int numrabbitKicks = 0;//added by Bryan to count number of rabbitkicks
+
 int numfalls = 0;
 int numKicks = 0;
 int numflipfail = 0;

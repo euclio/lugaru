@@ -91,6 +91,7 @@ extern float hostiletime;
 
 extern int mainmenu;
 
+extern int numrabbitKicks;
 extern int numfalls;
 extern int numKicks;
 extern int numflipfail;
@@ -107,6 +108,7 @@ extern int numreversals;
 extern int numattacks;
 extern int maxalarmed;
 extern int indialogue;
+extern int numreversalED; //added by Bryan to count number of enemy reversals
 
 extern bool gamestarted;
 
@@ -1349,10 +1351,11 @@ void Person::Reverse(){
             
             if(victim->id==0&&animation[victim->targetanimation].attack==reversal){
                 numreversals++;
-                cout<<"P"<<id<<" reversaled by Player"<<endl;
+                //cout<<"P"<<id<<" reversaled by Player"<<endl;//BRYAN
             }
             else if (animation[victim->targetanimation].attack==reversal){
-                cout<<"Player got reversaled by P"<<victim->id<<endl;
+                numreversalED++;
+                //cout<<"Player got reversaled by P"<<victim->id<<endl;//BRYAN
             }
         }
 }
@@ -4823,7 +4826,10 @@ void	Person::DoAnimations(){
                     RagDoll(0);
                     lastfeint=0;
                     rabbitkickragdoll=1;
-                    cout<<"P"<<victim->id<<" got rabbitkicked by P"<<id<<endl;//TODO: CHANGE TO io
+                    if(id==0){
+                        numrabbitKicks++;
+                    }
+                    //cout<<"P"<<victim->id<<" got rabbitkicked by P"<<id<<endl;//TODO: CHANGE TO io
                 }
                 if(currentanimation==rabbitkickreversedanim){
                     if(!feint){
