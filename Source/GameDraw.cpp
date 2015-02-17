@@ -1758,17 +1758,21 @@ int Game::DrawGLScene(void)
 			char testEndTime[20];
 			strftime(testEndTime, sizeof(testEndTime), "%Y-%m-%d %T", tm);
 
-			std::ostream& out(std::cout);
-			out << "user,testFinish,timeAlive,numKicks,numRabbitKicks,numAttacks,numReversals,numReversaled,score" << std::endl
-				<< accountname[accountactive] << ","
-				<< testEndTime << ","
-				<< leveltime << ","
-				<< numKicks << ","
-				<< numrabbitKicks << ","
-				<< numattacks << ","
-				<< numreversals << ","
-				<< numreversalED << ","
-				<< static_cast<int>(bonustotal - startbonustotal) << std::endl;
+			std::fstream log;
+			log.open("tests.csv", std::fstream::out | std::fstream::app);
+			if (log.tellg() == 0) {
+				log << "user,testFinish,timeAlive,numKicks,numRabbitKicks,numAttacks,numReversals,numReversaled,score" << std::endl;
+			}
+				log << accountname[accountactive] << ","
+					<< testEndTime << ","
+					<< leveltime << ","
+					<< numKicks << ","
+					<< numrabbitKicks << ","
+					<< numattacks << ","
+					<< numreversals << ","
+					<< numreversalED << ","
+					<< static_cast<int>(bonustotal - startbonustotal) << std::endl;
+			log.close();
 			notlogged = false;
 		}
 
