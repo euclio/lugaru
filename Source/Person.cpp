@@ -171,6 +171,7 @@ void Person::CheckKick(){
                         //if(victim->damage>victim->damagetolerance){
                         if(id==0){
                             bonus=cannon;
+                            //numrabbitKicks++;//added by Bryan THIS IS SPOT ON RABBIT KICKS ONLY
                             bonustime=0;
                             bonusvalue=100;
                         }
